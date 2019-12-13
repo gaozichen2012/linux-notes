@@ -18,11 +18,12 @@
 ![执行](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-3-APP%E5%BC%80%E5%8F%91.jpg)
 
 ## bootloader开发步骤
+>`make aboot`生成bootloader，`make aboot/clean`删除生成的bootloader及相关文件
 1. 使用`make aboot`编译 bootloader, 并在当前路径 target/下生成`appsboot.mbn`
-![make aboot]()
-![appsboot.mbn]()
+![make aboot](https://github.com/gaozichen2012/linux-notes/blob/master/img/8-1-bootloader.jpg)
+![appsboot.mbn](https://github.com/gaozichen2012/linux-notes/blob/master/img/8-2-bootloader.jpg)
 2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`appsboot.mbn`
-![下载]()
+![下载](https://github.com/gaozichen2012/linux-notes/blob/master/img/8-3-bootloader.jpg)
 3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
 
 ## 进入和退出adb shell
@@ -46,12 +47,13 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 |ql-ol-usrdata|用户数据|
 
 ## EC20CEHCLGR06A05V03M1G_TP598\update文件解析
+>这几个文件都是编译移远SDK生成的文件
 
 ## mbn格式简介
 mbn是高通包含了特定运营商定制的一套efs，nv的集成包文件。同样的mbn文件会有很多。每个运营商都会有一个特定mbn包含在modem的代码中。需要使用高通最新的PDC工具load和激活，然后才能切换。
 ### 烧录mbn
 烧录MBN文件：mbn文件是刷高通ril芯片的文件，需要用高通的QPST软件烧录，mbn直接是个文件，不需要解压，把QPST切换到software download—Multi-image，这个sheet就可以识别mbn文件烧录。具体如如下截图：
-![QPST软件截图]()
+![QPST软件截图](https://github.com/gaozichen2012/linux-notes/blob/master/img/7-%E9%AB%98%E9%80%9A%E7%83%A7%E5%BD%95%E5%B7%A5%E5%85%B7.jpg)
 ## UBI格式简介
 * UBI文件系统
 * UBI全称Unsorted Block Imagine（未排序的块图像）
@@ -62,5 +64,5 @@ mbn是高通包含了特定运营商定制的一套efs，nv的集成包文件。
 tar命令在解压时会默认指定参数--same-owner，即打包的时候是谁的，解压后就给谁；如果在解压时指定参数--no-same-owner（即tar --no-same-owner -zxvf xxxx.tar.gz），则会将执行该tar命令的用户作为解压后的文件目录的所有者。
 ![tar解压普通用户](https://github.com/gaozichen2012/linux-notes/blob/master/img/6-tar%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7.jpg)
 # 问题点
-* EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2是SDK，EC20CEHCLGR06A05V03M1G_TP598.rar是什么？能不能在windows下解压？
-* 为什么在VMTOOLS下编译不行，在ubuntu目录下就可以
+* 根据移远OPEN快速入门手册，测试APP开发、Kernel开发、文件系统制作和usrdata.ubi制作（必须测试走一遍，完成以后再向黄工了解如何修改598的程序，编译、下载）
+* 了解模块升级工具Quectel_Customer_FW_Download_Tool的升级文件类型
