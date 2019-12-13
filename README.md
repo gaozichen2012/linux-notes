@@ -4,6 +4,8 @@
 ## 相关概念及注意事项
 * 移远SDK 压缩包的解压必须在 Ubuntu“普通用户”环境下解压。
 * QuecOpenTM是一种以模组作为主处理器的应用方式。采用QuecOpenTM解决方案，可以简化用户对无线应用的开发流程，精简硬件结构设计，从而降低产品成本。
+* 所有开发之前，都必须先执行`source ql-ol-crosstool/ql-ol-crosstool-env-init`
+
 
 ## 进入和退出adb shell
 ubuntu的adb驱动装的有问题，所以使用windows adb
@@ -24,3 +26,7 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 |ql-ol-crosstool|交叉工具链|
 |ql-ol-extsdk|包含了一些 API， example 以及 tools 工具包|
 |ql-ol-usrdata|用户数据|
+
+# 问题点
+* EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2是SDK，EC20CEHCLGR06A05V03M1G_TP598.rar是什么？能不能在windows下解压？
+* 
