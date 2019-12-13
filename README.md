@@ -1,2 +1,14 @@
 # linux-notes
- linux笔记
+此笔记存放移远模块调试记录，linux相关笔记暂存都存在README中，后续内容增多，在区分子笔记本，再在README中汇总
+
+## 相关概念及注意事项
+* 移远SDK 压缩包的解压必须在 Ubuntu“普通用户”环境下解压。
+* QuecOpenTM是一种以模组作为主处理器的应用方式。采用QuecOpenTM解决方案，可以简化用户对无线应用的开发流程，精简硬件结构设计，从而降低产品成本。
+
+## 进入和退出adb shell
+ubuntu的adb驱动装的有问题，所以使用windows adb
+![进入和退出adb shell]()
+
+## adb push和pull文件
+![adb push]()
+![adb pull]()
