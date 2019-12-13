@@ -38,7 +38,7 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 |ql-ol-usrdata|用户数据|
 ## 为什么压缩包必须在普通用户环境下解压？
 tar命令在解压时会默认指定参数--same-owner，即打包的时候是谁的，解压后就给谁；如果在解压时指定参数--no-same-owner（即tar --no-same-owner -zxvf xxxx.tar.gz），则会将执行该tar命令的用户作为解压后的文件目录的所有者。
-![tar解压普通用户]()
+![tar解压普通用户](https://github.com/gaozichen2012/linux-notes/blob/master/img/6-tar%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7.jpg)
 # 问题点
 * EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2是SDK，EC20CEHCLGR06A05V03M1G_TP598.rar是什么？能不能在windows下解压？
 * 为什么在VMTOOLS下编译不行，在ubuntu目录下就可以
