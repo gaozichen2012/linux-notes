@@ -15,7 +15,8 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 
 ## 移远SDK解析
 ![移远SDK文件夹](https://github.com/gaozichen2012/linux-notes/blob/master/img/4-%E7%A7%BB%E8%BF%9CSDK%E6%96%87%E4%BB%B6%E5%A4%B9.jpg)
-|文件夹|说明|
+
+| 文件夹 | 说明 |
 | --- | --- |
 |ql-ol-kernel|Linux 内核源码（根据客户定制权限才开放）|
 |ql-ol-bootloader|高通 bootloader 源码（根据客户定制权限才开放）|
