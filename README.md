@@ -48,6 +48,7 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 
 ## EC20CEHCLGR06A05V03M1G_TP598\update文件解析
 >这几个文件都是编译移远SDK生成的文件
+
 ![update](https://github.com/gaozichen2012/linux-notes/blob/master/img/9-%E5%8D%87%E7%BA%A7%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90.jpg)
 
 ## mbn格式简介
@@ -67,3 +68,4 @@ tar命令在解压时会默认指定参数--same-owner，即打包的时候是�
 # 问题点
 * 根据移远OPEN快速入门手册，测试APP开发、Kernel开发、文件系统制作和usrdata.ubi制作（必须测试走一遍，完成以后再向黄工了解如何修改598的程序，编译、下载）
 * 了解模块升级工具Quectel_Customer_FW_Download_Tool的升级文件类型
+* 详细了解模块app开发内容，把入门手册中app开发再深入走一遍
