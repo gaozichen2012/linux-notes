@@ -10,11 +10,11 @@
 ## 交叉编译生成可执行文件并下载到机器执行的步骤
 1. 以普通用户`tom`解压移远SDK `tar -jxvf EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2`
 2. 初始化交叉编译环境 `source ql-ol-crosstool/ql-ol-crosstool-env-init`
-![初始化交叉编译环境]()
+![初始化交叉编译环境](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-1-APP%E5%BC%80%E5%8F%91.jpg)
 3. `make`生辰可执行文件，并传给VMTools
-![make]()
+![make](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-2-APP%E5%BC%80%E5%8F%91.jpg)
 4. 将可执行文件通过adb传到`/usrdata`目录下，并进入adb shell执行该文件
-![执行]()
+![执行](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-3-APP%E5%BC%80%E5%8F%91.jpg)
 
 ## 进入和退出adb shell
 ubuntu的adb驱动装的有问题，所以使用windows adb
