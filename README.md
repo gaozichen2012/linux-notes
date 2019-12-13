@@ -7,8 +7,9 @@
 
 ## 进入和退出adb shell
 ubuntu的adb驱动装的有问题，所以使用windows adb
-![进入和退出adb shell]()
+![进入和退出adb shell](https://github.com/gaozichen2012/linux-notes/blob/master/img/1-%E8%BF%9B%E5%85%A5%E9%80%80%E5%87%BAadb%20shell.jpg)
 
 ## adb push和pull文件
-![adb push]()
-![adb pull]()
+![adb push](https://github.com/gaozichen2012/linux-notes/blob/master/img/2-adb%20push%E6%96%87%E4%BB%B6.jpg)
+![adb pull](https://github.com/gaozichen2012/linux-notes/blob/master/img/3-adb%20pull%E6%96%87%E4%BB%B6.jpg)
+
