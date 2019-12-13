@@ -8,12 +8,13 @@
 * 移远SDK不能放在`VMTOOLS`目录下，不然make的时候会出现错误
 
 ## 交叉编译生成可执行文件并下载到机器执行的步骤
+> 移远SDK以普通用户解压是因为tar命令的要求，以root解压所有权归root，以普通用户解压所有权归普通用户
 1. 以普通用户`tom`解压移远SDK `tar -jxvf EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2`
 2. 初始化交叉编译环境 `source ql-ol-crosstool/ql-ol-crosstool-env-init`
 ![初始化交叉编译环境](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-1-APP%E5%BC%80%E5%8F%91.jpg)
 3. `make`生辰可执行文件，并传给VMTools
 ![make](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-2-APP%E5%BC%80%E5%8F%91.jpg)
-4. 将可执行文件通过adb传到`/usrdata`目录下，并进入adb shell执行该文件
+4. 将可执行文件通过adb传到`/usrdata`目录下，修改可执行文件的权限，并进入adb shell执行该文件
 ![执行](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-3-APP%E5%BC%80%E5%8F%91.jpg)
 
 ## 进入和退出adb shell
@@ -35,7 +36,9 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 |ql-ol-crosstool|交叉工具链|
 |ql-ol-extsdk|包含了一些 API， example 以及 tools 工具包|
 |ql-ol-usrdata|用户数据|
-
+## 为什么压缩包必须在普通用户环境下解压？
+tar命令在解压时会默认指定参数--same-owner，即打包的时候是谁的，解压后就给谁；如果在解压时指定参数--no-same-owner（即tar --no-same-owner -zxvf xxxx.tar.gz），则会将执行该tar命令的用户作为解压后的文件目录的所有者。
+![tar解压普通用户]()
 # 问题点
 * EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2是SDK，EC20CEHCLGR06A05V03M1G_TP598.rar是什么？能不能在windows下解压？
 * 为什么在VMTOOLS下编译不行，在ubuntu目录下就可以
