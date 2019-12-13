@@ -48,6 +48,7 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 
 ## EC20CEHCLGR06A05V03M1G_TP598\update文件解析
 >这几个文件都是编译移远SDK生成的文件
+![update](https://github.com/gaozichen2012/linux-notes/blob/master/img/9-%E5%8D%87%E7%BA%A7%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90.jpg)
 
 ## mbn格式简介
 mbn是高通包含了特定运营商定制的一套efs，nv的集成包文件。同样的mbn文件会有很多。每个运营商都会有一个特定mbn包含在modem的代码中。需要使用高通最新的PDC工具load和激活，然后才能切换。
