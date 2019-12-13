@@ -13,3 +13,13 @@ ubuntu的adb驱动装的有问题，所以使用windows adb
 ![adb push](https://github.com/gaozichen2012/linux-notes/blob/master/img/2-adb%20push%E6%96%87%E4%BB%B6.jpg)
 ![adb pull](https://github.com/gaozichen2012/linux-notes/blob/master/img/3-adb%20pull%E6%96%87%E4%BB%B6.jpg)
 
+## 移远SDK解析
+![移远SDK文件夹]()
+|文件夹|说明|
+|---|---|
+|ql-ol-kernel|Linux 内核源码（根据客户定制权限才开放）|
+|ql-ol-bootloader|高通 bootloader 源码（根据客户定制权限才开放）|
+|ql-ol-rootfs|平台运行时的根文件系统|
+|ql-ol-crosstool|交叉工具链|
+|ql-ol-extsdk|包含了一些 API， example 以及 tools 工具包|
+|ql-ol-usrdata|用户数据|
