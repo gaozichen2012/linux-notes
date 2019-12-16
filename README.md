@@ -7,7 +7,7 @@
 * 所有开发之前，都必须先执行`source ql-ol-crosstool/ql-ol-crosstool-env-init`
 * 移远SDK不能放在`VMTOOLS`目录下，不然make的时候会出现错误
 
-## 交叉编译生成可执行文件并下载到机器执行的步骤
+## linux APP开发步骤
 > 移远SDK以普通用户解压是因为tar命令的要求，以root解压所有权归root，以普通用户解压所有权归普通用户；SDK放在VMTools目录下解压，后面make会出错，可能是因为文件目录过深，makefile为考虑到的问题；
 1. 以普通用户`tom`解压移远SDK `tar -jxvf EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2`
 2. 初始化交叉编译环境 `source ql-ol-crosstool/ql-ol-crosstool-env-init`
@@ -17,7 +17,7 @@
 4. 将可执行文件通过adb传到`/usrdata`目录下，修改可执行文件的权限，并进入adb shell执行该文件
 ![执行](https://github.com/gaozichen2012/linux-notes/blob/master/img/5-3-APP%E5%BC%80%E5%8F%91.jpg)
 
-## bootloader开发步骤
+## bootloader开发步骤（测试正常）
 >`make aboot`生成bootloader，`make aboot/clean`删除生成的bootloader及相关文件
 1. 使用`make aboot`编译 bootloader, 并在当前路径 target/下生成`appsboot.mbn`
 ![make aboot](https://github.com/gaozichen2012/linux-notes/blob/master/img/8-1-bootloader.jpg)
@@ -25,6 +25,26 @@
 2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`appsboot.mbn`
 ![下载](https://github.com/gaozichen2012/linux-notes/blob/master/img/8-3-bootloader.jpg)
 3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
+
+## kernel开发步骤（测试正常）
+>`make kernel`生成kernel，`make kernel/clean`删除生成的kernel及相关文件；`make kernel_module`编译内核模块（修改了 kmod 相关代码才需要执行），并自动安装到rootfs 目录下， 需要重新制作 sysfs.ubi（暂时未用到）
+1. 使用`make kernel`编译 kernel, 并在当前路径 target/下生成`mdm9607-perf-boot.img`
+2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`mdm9607-perf-boot.img`
+3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
+
+## 文件系统制作（测试正常）
+>`make rootfs`生成sysfs.ubi，`make rootfs/clean`删除生成的sysfs.ubi及相关文件；
+1. 使用`make rootfs`编译文件系统, 并在当前路径 target/下生成`mdm9607-perf-sysfs.ubi`
+2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`mdm9607-perf-sysfs.ubi`
+3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
+
+## usrdata.ubi制作（测试正常）
+>Flash 默认有一个 usr_data 分区， 可以用来存放用户的文件和进行 DFOTA 升级使用。
+>`make usrdata`生成usrdata.ubi，`make usrdata/clean`删除生成的usrdata.ubi及相关文件；
+1. 使用`make usrdata`编译 usrdata, 并在当前路径 target/下生成`usrdata.ubi`
+2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`usrdata.ubi`
+3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
+
 
 ## 进入和退出adb shell
 ubuntu的adb驱动装的有问题，所以使用windows adb
