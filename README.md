@@ -45,7 +45,6 @@
 2. 替换掉下载包`EC20CEHCLGR06A05V03M1G_TP598\update`中的`usrdata.ubi`
 3. 使用移远提供的模块升级工具Quectel_Customer_FW_Download_Tool_V4.32升级
 
-
 ## 进入和退出adb shell
 ubuntu的adb驱动装的有问题，所以使用windows adb
 ![进入和退出adb shell](https://github.com/gaozichen2012/linux-notes/blob/master/img/1-%E8%BF%9B%E5%85%A5%E9%80%80%E5%87%BAadb%20shell.jpg)
