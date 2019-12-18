@@ -84,6 +84,37 @@ mbn是高通包含了特定运营商定制的一套efs，nv的集成包文件。
 ## 为什么压缩包必须在普通用户环境下解压？
 tar命令在解压时会默认指定参数--same-owner，即打包的时候是谁的，解压后就给谁；如果在解压时指定参数--no-same-owner（即tar --no-same-owner -zxvf xxxx.tar.gz），则会将执行该tar命令的用户作为解压后的文件目录的所有者。
 ![tar解压普通用户](https://github.com/gaozichen2012/linux-notes/blob/master/img/6-tar%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7.jpg)
+
+## 分析移远EC20 APP程序（KCM828机型）
+
+* 
+### 创建线程 pthread_create
+* Linux系统下的多线程遵循POSIX线程接口，称为pthread
+
+```
+int pthread_create(pthread_t *restrict tidp,
+const pthread_attr_t *restrict attr,
+void *(*start_rtn)(void), 
+void *restrict arg);
+Returns: 0 if OK, error number on failure
+```
+第一个参数tidp为指向线程标识符的指针。
+第二个参数用来设置线程属性。（通常为NULL）
+第三个参数是线程运行函数的起始地址。（通常为创建线程的函数名）
+最后一个参数是运行函数的参数。（通常为NULL）
+
+>C99 中新增加了`restrict`修饰的指针： 由`restrict`修饰的指针是最初唯一对指针所指向的对象进行存取的方法，仅当第二个指针基于第一个时，才能对对象进行存取。对对象的存取都限定于基于由`restrict`修饰的指针表达式中。 由`restrict`修饰的指针主要用于函数形参，或指向由`malloc()`分配的内存空间。restrict数据类型不改变程序的语义。 编译器能通过作出 restrict 修饰的指针是存取对象的唯一方法的假设，更好地优化某些类型的例程。
+
+由于pthread库不是Linux系统默认的库，连接时需要使用库libpthread.a,所以在使用pthread_create创建线程时，在编译中要加-lpthread参数`gcc -o pthread -lpthread pthread.c`，-lpthread参数在KCM828机型的Makefile中的使用见下截图：
+![]()
+
+
+
+## Makefile相关知识点
+
+## 分析KCM828机型的Makefile
+```
+
 # 问题点
 * 根据移远OPEN快速入门手册，测试APP开发、Kernel开发、文件系统制作和usrdata.ubi制作（必须测试走一遍，完成以后再向黄工了解如何修改598的程序，编译、下载）
 * 了解模块升级工具Quectel_Customer_FW_Download_Tool的升级文件类型
