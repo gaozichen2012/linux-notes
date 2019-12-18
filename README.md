@@ -90,7 +90,7 @@ tar命令在解压时会默认指定参数--same-owner，即打包的时候是�
 * 
 ### 创建线程 pthread_create
 * Linux系统下的多线程遵循POSIX线程接口，称为pthread
-
+* pthread_create()创建的线程并不具备与主线程（即调用pthread_create()的线程）同样的执行序列，而是使其运行start_routine(arg)函数。
 ```
 int pthread_create(pthread_t *restrict tidp,
 const pthread_attr_t *restrict attr,
@@ -106,9 +106,12 @@ Returns: 0 if OK, error number on failure
 >C99 中新增加了`restrict`修饰的指针： 由`restrict`修饰的指针是最初唯一对指针所指向的对象进行存取的方法，仅当第二个指针基于第一个时，才能对对象进行存取。对对象的存取都限定于基于由`restrict`修饰的指针表达式中。 由`restrict`修饰的指针主要用于函数形参，或指向由`malloc()`分配的内存空间。restrict数据类型不改变程序的语义。 编译器能通过作出 restrict 修饰的指针是存取对象的唯一方法的假设，更好地优化某些类型的例程。
 
 由于pthread库不是Linux系统默认的库，连接时需要使用库libpthread.a,所以在使用pthread_create创建线程时，在编译中要加-lpthread参数`gcc -o pthread -lpthread pthread.c`，-lpthread参数在KCM828机型的Makefile中的使用见下截图：
-![]()
+![-pthread](https://github.com/gaozichen2012/linux-notes/blob/master/img/10-lpthread.jpg)
 
+#### 线程创建的Linux实现
+Linux的线程实现是在核外进行的，核内提供的是创建进程的接口do_fork()。内核提供了两个系统调用__clone()和fork()，最终都用不同的参数调用do_fork()核内API。当然，要想实现线程，没有核心对多进程（其实是轻量级进程）共享数据段的支持是不行的，因 此，do_fork()提供了很多参数，包括CLONE_VM（共享内存空间）、CLONE_FS（共享文件系统信息）、CLONE_FILES（共享文 件描述符表）、CLONE_SIGHAND（共享信号句柄表）和CLONE_PID（共享进程ID，仅对核内进程，即0号进程有效）。当使用fork系统 调用时，内核调用do_fork()不使用任何共享属性，进程拥有独立的运行环境，而使用pthread_create()来创建线程时,则最终设置了所有这些属性来调用__clone()，而这些参数又全部传给核内的do_fork()，从而创建的"进程"拥有共享的运行环境，只有栈是独立的，由 __clone()传入。
 
+Linux线程在核内是以轻量级进程的形式存在的，拥有独立的进程表项，而所有的创建、同步、删 除等操作都在核外pthread库中进行。pthread 库使用一个管理线程（__pthread_manager()，每个进程独立且唯一）来管理线程的创建和终止，为线程分配线程ID，发送线程相关的信号 （比如Cancel），而主线程（pthread_create()）的调用者则通过管道将请求信息传给管理线程。
 
 ## Makefile相关知识点
 
