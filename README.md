@@ -7,6 +7,22 @@
 * 所有开发之前，都必须先执行`source ql-ol-crosstool/ql-ol-crosstool-env-init`
 * 移远SDK不能放在`VMTOOLS`目录下，不然make的时候会出现错误
 
+## 常用命令
+* 每次打开终端都需要初始化交叉编译环境 `source ql-ol-crosstool/ql-ol-crosstool-env-init`
+* 进入adb运行了程序，按`ctrl+c`退出
+
+## 自定义的命令
+>编辑环境变量`vi /etc/bash.bashrc`,立即生效`source /etc/bash.bashrc`
+```
+#------------tom define-----------
+# 设置快捷命令
+alias cptom='cp -r /mnt/hgfs/repository/TP38P-open /root/ql-ol-sdk/open/'
+alias cpmcu='cp -r /root/ql-ol-sdk/open/TP38P-open/src /mnt/hgfs/VMTools/'
+alias cdtom='cd /root/ql-ol-sdk/open/TP38P-open/src'
+
+#------------tom define end-------
+```
+
 ## linux APP开发步骤
 > 移远SDK以普通用户解压是因为tar命令的要求，以root解压所有权归root，以普通用户解压所有权归普通用户；SDK放在VMTools目录下解压，后面make会出错，可能是因为文件目录过深，makefile为考虑到的问题；
 1. 以普通用户`tom`解压移远SDK `tar -jxvf EC20CEHCLGR06A05V03M1G_OCPU_RC.tar.bz2`
@@ -111,6 +127,30 @@ Linux的线程实现是在核外进行的，核内提供的是创建进程的接
 
 Linux线程在核内是以轻量级进程的形式存在的，拥有独立的进程表项，而所有的创建、同步、删 除等操作都在核外pthread库中进行。pthread 库使用一个管理线程（__pthread_manager()，每个进程独立且唯一）来管理线程的创建和终止，为线程分配线程ID，发送线程相关的信号 （比如Cancel），而主线程（pthread_create()）的调用者则通过管道将请求信息传给管理线程。
 
+# 如何自定义快捷指令
+## 环境变量
+Ubuntu Linux系统包含两类环境变量：
+1. 系统环境变量和用户环境变量。系统环境变量对所有系统用户都有效
+ 系统环境变量相关文件：
+* /etc/environment
+* /etc/profile
+* /etc/bash.bashrc
+2. 用户环境变量仅仅对当前的用户有效
+ 用户环境变量相关文件：
+* ~/.profile
+* ~/.bash_profile 或者 ~./bash_login
+* ~/.bashrc
+## 利用环境变量来设置一些快捷命令
+```
+# 第一步：进入编辑环境变量文件
+vi /etc/bash.bashrc
+
+# 第二步：设置快捷指令，为需要打开的路径设置一个别名（快捷命令）
+cp -r /mnt/hgfs/repository/TP38P-open /home/tom/ql-ol-sdk/open/
+
+# 第三步：让修改立即生效（默认开机自启动）
+source /etc/bash.bashrc
+```
 ## Makefile相关知识点
 
 ## 分析KCM828机型的Makefile
