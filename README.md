@@ -16,8 +16,9 @@
 ```
 #------------tom define-----------
 # 设置快捷命令
+alias openinit='source ql-ol-crosstool/ql-ol-crosstool-env-init'
 alias cptom='cp -r /mnt/hgfs/repository/TP38P-open /root/ql-ol-sdk/open/'
-alias cpmcu='cp -r /root/ql-ol-sdk/open/TP38P-open/src /mnt/hgfs/VMTools/'
+alias cpmcu='cp -r /root/ql-ol-sdk/open/TP38P-open/src/mcu /mnt/hgfs/repository/TP38P-open/src'
 alias cdtom='cd /root/ql-ol-sdk/open/TP38P-open/src'
 
 #------------tom define end-------
