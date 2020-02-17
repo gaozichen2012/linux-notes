@@ -1,5 +1,7 @@
 # linux-notes
-此笔记存放移远模块调试记录，linux相关笔记暂存都存在README中，后续内容增多，在区分子笔记本，再在README中汇总
+2020年2月17日此笔记终止记录，相关记录已转移至Notion
+
+Notion地址链接：https://www.notion.so/gaozichen/QuecOpen-ee61c07a7fb74168be5ebaf59e6451a7
 
 ## 相关概念及注意事项
 * 移远SDK 压缩包的解压必须在 Ubuntu“普通用户”环境下解压。
